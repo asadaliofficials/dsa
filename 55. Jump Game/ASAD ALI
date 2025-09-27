@@ -1,0 +1,20 @@
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canJump = function(nums) {
+  let maxReach = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    // if the curent idx is beyond to what we can reach return false
+    if (i > maxReach) return false;
+
+    // Update the max reachable index
+    maxReach = Math.max(maxReach, i + nums[i]);
+
+    // if we can already reach or go beyond the last index return true
+    if (maxReach >= nums.length - 1) return true;
+  }
+
+  return false;
+};
