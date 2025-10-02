@@ -1,0 +1,26 @@
+/**
+ * @param {number[][]} matrix
+ * @return {void}
+ */
+var rotate = function (matrix) {
+	const n = matrix.length;
+
+	// transpse: swap elements across main diagonal
+	for (let i = 0; i < n; i++) {
+		for (let j = i + 1; j < n; j++) {
+			// swap matrix[i][j] and matrix[j][i]
+			const temp = matrix[i][j];
+			matrix[i][j] = matrix[j][i];
+			matrix[j][i] = temp;
+		}
+	}
+
+	// reverse each row
+	for (let i = 0; i < n; i++) {
+		for (let j = 0; j < Math.floor(n / 2); j++) {
+			const temp = matrix[i][j];
+			matrix[i][j] = matrix[i][n - 1 - j];
+			matrix[i][n - 1 - j] = temp;
+		}
+	}
+};
