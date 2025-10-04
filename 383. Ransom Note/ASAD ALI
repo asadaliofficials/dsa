@@ -1,0 +1,23 @@
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function (ransomNote, magazine) {
+	const letterCount = {};
+
+	// count the frequency of each letter in the magazine
+	for (let letter of magazine) {
+		letterCount[letter] = (letterCount[letter] || 0) + 1;
+	}
+
+	// check if each letter in the ransom note can be constructed
+	for (let letter of ransomNote) {
+		if (!letterCount[letter]) {
+			return false; // Letter not available or used up
+		}
+		letterCount[letter]--;
+	}
+
+	return true; // al letters can be constructed
+};
