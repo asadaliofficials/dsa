@@ -1,0 +1,33 @@
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function (board) {
+	const n = 9;
+	// Use arrays of Sets to track seen digits
+	const rows = Array.from({ length: n }, () => new Set());
+	const cols = Array.from({ length: n }, () => new Set());
+	const boxes = Array.from({ length: n }, () => new Set());
+
+	for (let i = 0; i < n; i++) {
+		for (let j = 0; j < n; j++) {
+			const val = board[i][j];
+			if (val === '.') continue;
+
+			// Compute index of 3x3 box
+			const boxIndex = Math.floor(i / 3) * 3 + Math.floor(j / 3);
+
+			// If this digit already seen in row, column or box — invalid
+			if (rows[i].has(val) || cols[j].has(val) || boxes[boxIndex].has(val)) {
+				return false;
+			}
+
+			// Mark this digit as seen
+			rows[i].add(val);
+			cols[j].add(val);
+			boxes[boxIndex].add(val);
+		}
+	}
+
+	return true;
+};
