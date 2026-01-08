@@ -1,0 +1,8 @@
+/**
+ * @param {string} sentence
+ * @return {boolean}
+ */
+var checkIfPangram = function (sentence) {
+	const set = new Set(sentence.split(''));
+	return set.size == 26;
+};
